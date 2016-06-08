@@ -149,7 +149,8 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    libnetcmdiface
+    libnetcmdiface \
+    wificond
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
