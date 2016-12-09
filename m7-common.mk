@@ -164,6 +164,10 @@ PRODUCT_PACKAGES += \
     libnetcmdiface \
     wificond
 
+# WiFi HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
     $(LOCAL_PATH)/configs/calibration_EMEA:system/etc/calibration_EMEA \
