@@ -25,6 +25,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
     ro.sf.lcd_density=480
 
+# Google Assistant
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opa.eligible_device=true
+
 # Input
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.input.noresample=1
