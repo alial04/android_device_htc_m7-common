@@ -155,6 +155,8 @@ on init
 
     # Touchscreen
     chown system system /sys/class/leds/button-backlight/currents
+    chown system system /sys/android_touch/doubletap2wake
+    chmod 0644 /sys/android_touch/doubletap2wake
 
 # On emmc mount the partition containing firmware
 on fs

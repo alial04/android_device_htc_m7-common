@@ -56,3 +56,6 @@
 /sys/devices/virtual/graphics/fb1/hpd                  -- u:object_r:surfaceflinger_sysfs:s0
 /sys/devices/virtual/graphics/fb1/product_description  -- u:object_r:surfaceflinger_sysfs:s0
 /sys/devices/virtual/graphics/fb1/vendor_name          -- u:object_r:surfaceflinger_sysfs:s0
+
+# TapToWake
+/sys/android_touch/doubletap2wake                         u:object_r:doubletap2wake_sysfs:s0 
