@@ -48,3 +48,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
+
+# Timeout failed shutdowns
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.shutdown_timeout=5
