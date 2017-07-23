@@ -1,0 +1,2 @@
+allow sysinit proc_dirty_ratio:file write;
+allow sysinit proc:file write;
