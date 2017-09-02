@@ -91,6 +91,9 @@ BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
 
+# Vendor Interface Manifest
+DEVICE_MANIFEST_FILE := $(LOCAL_PATH)/manifest.xml
+
 # Wifi
 BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
