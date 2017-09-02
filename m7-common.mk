@@ -96,6 +96,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8960
 
+# Lights HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.light@2.0-impl
+
 # Log
 PRODUCT_PACKAGES += \
     liblog_shim
