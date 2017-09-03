@@ -56,10 +56,6 @@ WITH_LINEAGE_CHARGER := false
 PRODUCT_PACKAGES += \
     gps.msm8960
 
-# GPS HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
