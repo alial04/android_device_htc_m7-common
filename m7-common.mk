@@ -33,11 +33,6 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 PRODUCT_PACKAGES += \
     audio_amplifier.msm8960
 
-# Audio HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.audio@2.0-impl \
-    android.hardware.audio.effect@2.0-impl
-
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio_platform_info.xml:system/etc/audio_platform_info.xml \
@@ -48,11 +43,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/bcm4335_prepatch.hcd:system/vendor/firmware/bcm4335_prepatch.hcd
 
-# Bluetooth HAL
-PRODUCT_PACKAGES += \
-    android.hardware.bluetooth@1.0-impl \
-    libbt-vendor
-
 # Camera
 PRODUCT_PACKAGES += \
     camera.msm8960 \
@@ -61,13 +51,6 @@ PRODUCT_PACKAGES += \
 
 # Charger
 WITH_LINEAGE_CHARGER := false
-
-# Display HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.graphics.allocator@2.0-impl \
-    android.hardware.graphics.composer@2.1-impl \
-    android.hardware.graphics.mapper@2.0-impl \
-    android.hardware.memtrack@1.0-impl
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -85,10 +68,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/idc/projector_input.idc:system/usr/idc/projector_input.idc \
     $(LOCAL_PATH)/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
 
-# Keymaster HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@3.0-impl
-
 # Keylayouts
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/h2w_headset.kl:system/usr/keylayout/h2w_headset.kl \
@@ -100,9 +79,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     keystore.msm8960
 
-# Lights HIDL interfaces
+# Keymaster HIDL interfaces
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl
+    android.hardware.keymaster@3.0-impl
 
 # Log
 PRODUCT_PACKAGES += \
@@ -185,12 +164,7 @@ PRODUCT_PACKAGES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    libnetcmdiface \
-    wificond
-
-# WiFi HIDL interfaces
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
+    libnetcmdiface
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/calibration:system/etc/calibration \
