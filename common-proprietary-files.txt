@@ -190,13 +190,6 @@ bin/cir_fw_update
 etc/cir.img
 lib/hw/consumerir.default.so
 
-# Keystore
-vendor/firmware/keymaster/keymaster.b00
-vendor/firmware/keymaster/keymaster.b01
-vendor/firmware/keymaster/keymaster.b02
-vendor/firmware/keymaster/keymaster.b03
-vendor/firmware/keymaster/keymaster.mdt
-
 # Media
 lib/libI420colorconvert.so
 lib/libmm-color-convertor.so
