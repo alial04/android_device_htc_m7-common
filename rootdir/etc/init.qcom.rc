@@ -158,6 +158,9 @@ on init
 
 # On emmc mount the partition containing firmware
 on fs
+    wait /dev/block/platform/${ro.boot.bootdevice}
+    symlink /dev/block/platform/${ro.boot.bootdevice} /dev/block/bootdevice
+
     mkdir /devlog 0700 root root
     mkdir /ramdump 0700 root root
 
