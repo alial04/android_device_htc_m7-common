@@ -32,21 +32,25 @@
 #include <hardware/camera.h>
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
-#include <camera/CameraParametersExtra.h>
 
 const char KEY_VIDEO_HDR[] = "video-hdr";
 const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
 
 // Wrapper common specific parameters names
-static const char KEY_CAPTURE_MODE[] = "capture-mode";
-static const char KEY_FACE_DETECTION[] = "face-detection";
-static const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
-static const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
-static const char KEY_OIS_SUPPORT[] = "ois_support";
-static const char KEY_OIS_MODE[] = "ois_mode";
-static const char KEY_ZSL[] = "zsl";
+const char KEY_CAPTURE_MODE[] = "capture-mode";
+const char KEY_FACE_DETECTION[] = "face-detection";
+const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
+const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
+const char KEY_OIS_SUPPORT[] = "ois_support";
+const char KEY_OIS_MODE[] = "ois_mode";
+const char KEY_ZSL[] = "zsl";
+const char SCENE_MODE_HDR[] = "hdr";
+const char KEY_SCENE_MODE[] = "scene-mode";
+const char KEY_CAMERA_MODE[] = "camera-mode";
 
-static android::Mutex gCameraWrapperLock;
+using namespace android;
+
+static Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
 static char **fixed_set_params = NULL;
@@ -116,16 +120,16 @@ static char *camera_fixup_getparams(int id, const char *settings)
     const char *captureMode = "normal";
     const char *videoHdr = "false";
 
-    android::CameraParameters params;
-    params.unflatten(android::String8(settings));
+    CameraParameters params;
+    params.unflatten(String8(settings));
 
 #if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
 
-    if (params.get(android::KEY_CAPTURE_MODE)) {
-        captureMode = params.get(android::KEY_CAPTURE_MODE);
+    if (params.get(KEY_CAPTURE_MODE)) {
+        captureMode = params.get(KEY_CAPTURE_MODE);
     }
 
     if (params.get(android::CameraParameters::KEY_ROTATION)) {
@@ -139,10 +143,10 @@ static char *camera_fixup_getparams(int id, const char *settings)
     /* Disable face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(android::KEY_FACE_DETECTION, "off");
+    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
-    params.remove(android::KEY_SUPPORTED_DENOISE);
+    params.remove(KEY_SUPPORTED_DENOISE);
 
     /* Advertise video HDR values */
     params.set(KEY_VIDEO_HDR_VALUES, "off,on");
@@ -175,8 +179,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     /* Set HDR mode */
     if (!strcmp(captureMode, "hdr")) {
-        params.set(android::CameraParameters::KEY_SCENE_MODE,
-                android::CameraParameters::SCENE_MODE_HDR);
+        params.set(KEY_SCENE_MODE,
+                SCENE_MODE_HDR);
     }
 
     /* Set sensor parameters */
@@ -206,8 +210,8 @@ static char *camera_fixup_setparams(int id, const char *settings)
     const char *sceneMode = "auto";
     const char *videoHdr = "false";
 
-    android::CameraParameters params;
-    params.unflatten(android::String8(settings));
+    CameraParameters params;
+    params.unflatten(String8(settings));
 
 #if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
@@ -229,10 +233,10 @@ static char *camera_fixup_setparams(int id, const char *settings)
     /* Disable face detection */
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
     params.set(android::CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(android::CameraParameters::KEY_FACE_DETECTION, "off");
+    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
-    params.remove(android::KEY_SUPPORTED_DENOISE);
+    params.remove(KEY_SUPPORTED_DENOISE);
 
     /* Enable fixed fps mode */
     params.set("preview-frame-rate-mode", "frame-rate-fixed");
@@ -248,18 +252,18 @@ static char *camera_fixup_setparams(int id, const char *settings)
 
     if (!isVideo && id == 0) {
         /* Disable OIS, set continuous burst to prevent crash */
-        params.set(android::KEY_CONTIBURST_TYPE, "unlimited");
-        params.set(android::KEY_OIS_SUPPORT, "false");
-        params.set(android::KEY_OIS_MODE, "off");
+        params.set(KEY_CONTIBURST_TYPE, "unlimited");
+        params.set(KEY_OIS_SUPPORT, "false");
+        params.set(KEY_OIS_MODE, "off");
 
         /* Enable HDR */
-        if (!strcmp(sceneMode, android::SCENE_MODE_HDR)) {
-            params.set(android::KEY_SCENE_MODE, "off");
-            params.set(android::KEY_CAPTURE_MODE, "hdr");
+        if (!strcmp(sceneMode, SCENE_MODE_HDR)) {
+            params.set(KEY_SCENE_MODE, "off");
+            params.set(KEY_CAPTURE_MODE, "hdr");
         } else {
-            params.set(android::KEY_CAPTURE_MODE, "normal");
-            params.set(android::KEY_ZSL, "on");
-            params.set(android::KEY_CAMERA_MODE, "1");
+            params.set(KEY_CAPTURE_MODE, "normal");
+            params.set(KEY_ZSL, "on");
+            params.set(KEY_CAMERA_MODE, "1");
         }
     }
 
