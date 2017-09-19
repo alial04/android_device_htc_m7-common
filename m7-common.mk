@@ -57,6 +57,10 @@ PRODUCT_PACKAGES += \
 # Charger
 WITH_LINEAGE_CHARGER := false
 
+# Consumerir HIDL interfaces
+PRODUCT_PACKAGES += \
+    android.hardware.ir@1.0-impl
+
 # GPS
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
