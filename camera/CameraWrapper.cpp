@@ -39,7 +39,6 @@ const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
 
 // Wrapper common specific parameters names
 const char KEY_CAPTURE_MODE[] = "capture-mode";
-const char KEY_FACE_DETECTION[] = "face-detection";
 const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
 const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
 const char KEY_OIS_SUPPORT[] = "ois_support";
@@ -152,11 +151,6 @@ static char *camera_fixup_getparams(int __attribute__((unused)) id,
         videoHdr = params.get(KEY_VIDEO_HDR);
     }
 
-    /* Disable face detection */
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(KEY_FACE_DETECTION, "off");
-
     /* Disable denoise */
     params.remove(KEY_SUPPORTED_DENOISE);
 
@@ -233,11 +227,6 @@ static char *camera_fixup_setparams(int __attribute__((unused)) id,
     if (params.get(KEY_VIDEO_HDR)) {
         videoHdr = params.get(KEY_VIDEO_HDR);
     }
-
-    /* Disable face detection */
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_HW, "0");
-    params.set(CameraParameters::KEY_MAX_NUM_DETECTED_FACES_SW, "0");
-    params.set(KEY_FACE_DETECTION, "off");
 
     /* Disable denoise */
     params.remove(KEY_SUPPORTED_DENOISE);
