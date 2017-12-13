@@ -303,7 +303,7 @@ on boot
     chmod 0220 /sys/class/power_supply/battery/navigation
 
     # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
+    chown wifi wifi /sys/module/bcmdhd/parameters/firmware_path
 
     # Wake on volume
     write /sys/keyboard/vol_wakeup 1
