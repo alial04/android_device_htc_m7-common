@@ -61,8 +61,8 @@ WITH_LINEAGE_CHARGER := false
 #PRODUCT_PACKAGES += \
 #    gps.msm8960
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/gps/gps.conf:system/etc/gps.conf
 
 # IDC
 PRODUCT_COPY_FILES += \
@@ -160,6 +160,9 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
     libnetcmdiface \
     hostapd \
+    hostapd.accept \
+    hostapd.deny \
+    hostapd_default.conf \
     wpa_supplicant \
     wpa_supplicant.conf \
     libwifi-hal-bcm \
